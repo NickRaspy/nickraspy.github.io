@@ -1,7 +1,172 @@
-<!DOCTYPE html>
+<style>
+    @font-face {
+        font-family: "Galatea";
+        src: local("fonts/Galatea-ExtraBold.ttf") format(truetype);
+        font-weight: bolder;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "Galatea";
+        src: local("fonts/Galatea-Medium.ttf") format(truetype),
+             local("fonts/Galatea-Medium.woff") format(woff),
+             local("fonts/Galatea-Medium.woff2") format(woff2);
+        font-weight:bold;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "Galatea";
+        src: local("fonts/Galatea-Regular.ttf") format(truetype),
+             local("fonts/Galatea-Regular.woff") format(woff),
+             local("fonts/Galatea-Regular.woff2") format(woff2);
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "Galatea";
+        src: local("fonts/Galatea-Light.ttf") format(truetype),
+             local("fonts/Galatea-Light.woff") format(woff),
+             local("fonts/Galatea-Light.woff2") format(woff2);
+        font-weight:lighter;
+        font-style: normal;
+    }
+    body {
+        background-color:rgb(53, 53, 53);
+    }
+    h1{
+        text-align: center;
+        font-family: "Galatea";
+        font-weight: bolder;
+        font-style: normal;
+        color: lime;
+        font-size: 3em;
+    }
+    h2{
+        text-align: center;
+        font-family: "Galatea";
+        font-weight: bold;
+        color: lime;
+        font-size: 3em;
+    }
+    h3{
+        font-family: "Galatea";
+        font-weight: bold;
+        color: lime;
+        font-size: 2em;
+    }
+    img.logo{
+        display: block;
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    div.infoblock{
+        display: block;
+        overflow: hidden;
+    }
+    div.leftpanel{
+        float: left;
+        margin-right: 10px;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+    div.leftpanelbutton{
+        cursor:  pointer;
+        border-radius: 10px;
+        padding-left: 4px;
+        font-family: "Galatea";
+        font-weight: bold;
+        font-size: 2em ;
+        display: list-item;
+        color: lime;
+        outline:black solid;
+        width: 200px;
+        margin-bottom: 10px;
+        background: rgb(105, 105, 105);
+    }
+    div.infopanel{
+        overflow: hidden;
+        margin-left: 25px;
+        margin-top: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        padding: 5px;
+        outline:black solid;
+        background: rgb(105, 105, 105);
+        word-break: break-all;
+    }
+    div.test{
+        display: block;
+        background-color: azure;
+    }
+    a{
+        word-break: break-all;
+        font-family: "Galatea";
+        font-weight: normal;
+        font-size: 25px;
+    }
+    li{
+        font-family: "Galatea";
+        font-weight: normal;
+        font-size: 25px;
+    }
+    #info{
+         
+    }
+    a.icon{
+        display: inline-block;
+        width:50px;
+    }
+    img.icon{
+        width: 50px;
+    }
+    .moveabit{
+        margin-left: 25px;
+    }
+</style>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Сайт NickRaspy</title>
+    </head>
+    <body>
+        <header>
+            <img src="images/temp_logo.png" class="logo">
+            <h1>Распутин "NickRaspy" Никита</h1>
+        </header>
+        <div class="infoblock">
+            <div class="leftpanel">
+                <div class="leftpanelbutton">
+                    Обо мне
+                </div>
+                <div class="leftpanelbutton">
+                    Проекты
+                </div>
+                <div class="leftpanelbutton">
+                    Контакты
+                </div>
+            </div>
+            <div class="infopanel">
+                <h2>Обо мне</h2>
+                <a>&emsp;Меня зовут Никита, но ты также можешь называть меня Ник Распи или просто Ник. <br>
+                    &emsp;Я специализируюсь в создании видеоигр преимущественно на движке Unity (но также постепенно изучаю и другие движки).  
+                    С Unity я познакомился с ним еще со школы, но посвятил себя ему в полной мере начиная с 2020.
+                    Конкретно я занимаюсь геймдизайном и разработкой скриптов, изредка создаю модели и спрайты (в большинстве случаев тестовые, но небольшой опыт в рисовании есть).
+                </a>
+                <h3>Мои достижения</h3>
+                <ul>
+                    <li>Окончил бакалавриат по специальности "Математическое обеспечение и администрирование информационных систем" в 2024.</li>
+                    <li>Поучаствовал в нескольких геймджемах, в одном из них занял призовое место.</li>
+                    <li>Совместно с командой трех программистов (включая меня), одного аудио-дизайнера и множества художников смог успешно разработать фанатскую игру по одному комьюнити (на данный момент только демо)</li>
+                    <li>Изучил и даже имплементировал в некоторые проекты такие фреймворки, как Zenject и DOTWeen, а также научился разрабатывать VR-проекты. </li>
+                    <li>Основал команду разработки Unusuality Team, которая стремится к созданию необычных игр и ищет желающих помочь в реализации.</li>
+                </ul>
+                <a>&emsp;С моими проектами можно ознакомится в следующих ресурсах:</a>
+                <div class="moveabit">
+                    <a href = "https://unusuality-team.itch.io" class="icon"><img src ="images/itchio.svg" class="icon"></a>
+                    <a href = "https://github.com/NickRaspy" class="icon"><img src ="images/github.png" class="icon"></a>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

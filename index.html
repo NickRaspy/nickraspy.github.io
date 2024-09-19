@@ -1,5 +1,288 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<style>
+    @font-face {
+        font-family: "Galatea";
+        src: local("fonts/Galatea-ExtraBold.ttf") format("truetype");
+        font-weight: bolder;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "Galatea";
+        src: local("fonts/Galatea-Medium.ttf") format("truetype"),
+             local("fonts/Galatea-Medium.woff") format("woff"),
+             local("fonts/Galatea-Medium.woff2") format("woff2");
+        font-weight: bold;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "Galatea";
+        src: local("fonts/Galatea-Regular.ttf") format("truetype"),
+             local("fonts/Galatea-Regular.woff") format("woff"),
+             local("fonts/Galatea-Regular.woff2") format("woff2");
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "Galatea";
+        src: local("fonts/Galatea-Light.ttf") format("truetype"),
+             local("fonts/Galatea-Light.woff") format("woff"),
+             local("fonts/Galatea-Light.woff2") format("woff2");
+        font-weight: lighter;
+        font-style: normal;
+    }
+    body {
+        background-color: rgb(53, 53, 53);
+        margin: 0;
+        padding: 0;
+        font-family: "Galatea", sans-serif;
+        color: white;
+    }
+    h1, h2, h3 {
+        color: lime;
+    }
+    h1, h2
+    {
+        text-align: center;
+    }
+    h1 {
+        font-size: 4em;
+        font-weight: bolder;
+    }
+    h2 {
+        font-size: 3em;
+        font-weight: bold;
+    }
+    h3 {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-left: 2%;
+    }
+    p, ul, li, .toppanelbutton, .infopanel {
+        color: black;
+        font-family: "Galatea", sans-serif;
+        font-weight: bold;
+    }
+    img.logo {
+        display: block;
+        width: 100%;
+        max-width: 250px;
+        margin: 20px auto;
+    }
+    .infoblock {
+        display: flex;
+        flex-direction: column; /* Stack vertically */
+        justify-content: space-around;
+         /* Wider for larger screens */
+        margin: 0 auto; /* Center the block */
+        padding: 2%; /* Add padding */
+        flex-wrap: wrap; /* Allow wrapping */
+    }
+    .toppanel {
+        display: flex;
+        flex-direction: row; /* Arrange buttons in a row */
+        justify-content: space-around; /* Space buttons evenly */
+        margin-bottom: 0px; /* Add margin below buttons */
+        flex: 1; /* Allow top panel to take space */
+        max-width: 100%; /* Set a maximum width for the top panel */
+    }
+    .toppanelbutton {
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 15px;
+        font-size: 1.5em;
+        color: lime;
+        background: rgb(130, 130, 130);
+        margin: 10px; /* Adjust margin to space buttons */
+        text-align: center;
+        flex: 1; /* Allow buttons to take equal space */
+        height: 50px; /* Set a fixed height for the buttons */
+        display: flex;
+        align-items: center; /* Center text vertically */
+        justify-content: center; /* Center text horizontally */
+    }
+    .infopanel {
+        background: rgb(130, 130, 130);
+        border-radius: 10px;
+        margin: 10px 0;
+        flex: 3; /* Infopanel takes more space */
+        width: 100%; /* Ensure infopanel takes full width */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        overflow: hidden; /* Prevent content from overflowing */
+    }
+    .icon {
+        width: 50px;  /* Set width for icons */
+        height: 50px; /* Set height for icons */
+    }
+    .iconblock{
+        margin-left: 2%;
+    }
+    .low-margin {
+                margin-bottom: 5px;
+    }
+    .projectblock {
+        position: relative;
+        width: 100%; /* Ensure projectblock takes full width of its container */
+        max-width: 100%; /* Prevent projectblock from exceeding the width of its container */
+        margin: 20px 0;
+        overflow: hidden; /* Ensure content doesn't overflow */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    }
+    
+    .project-cover {
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease; /* Smooth transition for scaling */
+    }
+    
+    .project-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-transform: uppercase;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .project-text {
+        color: white;
+        font-size: 75%;
+    }
+    
+    .projectblock:hover .project-cover {
+        transform: scale(1.1); /* Scale up the cover image */
+    }
+    
+    .projectblock:hover .project-info {
+        opacity: 1; /* Show on hover */
+    }
+    .langbox{
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        flex-direction: row;
+    }
+    .langbutton {
+        position: relative;
+        cursor: pointer;
+        width: 80px; 
+        height: 45px;
+        margin: 5px;
+    }
+    /* Стили для мобильных устройств */
+    @media (max-width: 480px) {
+        .infoblock {
+            flex-direction: column; /* Stack vertically on mobile */
+        }
+        .toppanel {
+            order: -1; /* Move toppanel above infopanel */
+            flex-direction: row; /* Arrange buttons in a row */
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        h2 {
+            font-size: 2em;
+        }
+        h3 {
+            font-size: 1.5em;
+        }
+        p{
+            font-size: 1.2em;
+        }
+        ul, li, .infopanel {
+            font-size: 1.1em;
+        }
+        .infopanel{
+            padding: 3%;
+        }
+        .toppanelbutton {
+            font-size: 1.5em;
+            flex: 1 1 1 1; /* Buttons take equal space */
+            margin: 3.5px; /* Adjust margin for mobile */
+        }
+        .projectblock{
+            width: 100%;
+        }
+        .langbox {
+        flex-direction: column; /* На мобильных устройствах кнопки располагаются в столбик */
+        }
+    }
+    
+    /* Стили для планшетов и десктопов */
+    @media (min-width: 481px) {
+        .infopanel {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .projectblock {
+            width: calc(50% - 20px); /* Two columns with some margin */
+            margin: 10px;
+        }
+    }
+    
+    /* Стили для планшетов */
+    @media (max-width:1200px) and (min-width: 480px) {
+        h1 {
+            font-size: 2.5em;
+        }
+        h2 {
+            font-size: 2em;
+        }
+        h3 {
+            font-size: 1.5em;
+        }
+        p{
+            font-size: 1.2em;
+        }
+        ul, li, .infopanel {
+            font-size: 1.1em;
+        }
+        .infopanel{
+            padding: 2%;
+        }
+        .toppanelbutton
+        {
+            font-size: 1.3em;
+        }
+    }
+    
+    /* Стили для десктопов */
+    @media (min-width: 1200px) {
+        h1 {
+            font-size: 3em;
+        }
+        h2 {
+            font-size: 2em;
+        }
+        h3 {
+            font-size: 1.5em;
+        }
+        p{
+            font-size: 1.3em;
+        }
+        ul, li, .infopanel {
+            font-size: 1.1em;
+        }
+        .infopanel{
+            padding: 1%;
+        }
+        .toppanelbutton{
+            font-size: 2em;
+        }
+    }
+        </style>
+
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,275 +293,15 @@
     <meta property="og:description" content="This is the portfolio website of Nick Raspy.">
     <meta property="og:image" content="https://i.imgur.com/P3U2bRz.png">
     <title>Сайт NickRaspy</title>
-    <style>
-@font-face {
-    font-family: "Galatea";
-    src: local("fonts/Galatea-ExtraBold.ttf") format("truetype");
-    font-weight: bolder;
-    font-style: normal;
-}
-@font-face {
-    font-family: "Galatea";
-    src: local("fonts/Galatea-Medium.ttf") format("truetype"),
-         local("fonts/Galatea-Medium.woff") format("woff"),
-         local("fonts/Galatea-Medium.woff2") format("woff2");
-    font-weight: bold;
-    font-style: normal;
-}
-@font-face {
-    font-family: "Galatea";
-    src: local("fonts/Galatea-Regular.ttf") format("truetype"),
-         local("fonts/Galatea-Regular.woff") format("woff"),
-         local("fonts/Galatea-Regular.woff2") format("woff2");
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: "Galatea";
-    src: local("fonts/Galatea-Light.ttf") format("truetype"),
-         local("fonts/Galatea-Light.woff") format("woff"),
-         local("fonts/Galatea-Light.woff2") format("woff2");
-    font-weight: lighter;
-    font-style: normal;
-}
-body {
-    background-color: rgb(53, 53, 53);
-    margin: 0;
-    padding: 0;
-    font-family: "Galatea", sans-serif;
-    color: white;
-}
-h1, h2, h3 {
-    color: lime;
-}
-h1, h2
-{
-    text-align: center;
-}
-h1 {
-    font-size: 4em;
-    font-weight: bolder;
-}
-h2 {
-    font-size: 3em;
-    font-weight: bold;
-}
-h3 {
-    font-size: 2.5em;
-    font-weight: bold;
-    margin-left: 2%;
-}
-p, ul, li, .toppanelbutton, .infopanel {
-    color: black;
-    font-family: "Galatea", sans-serif;
-    font-weight: bold;
-}
-img.logo {
-    display: block;
-    width: 100%;
-    max-width: 250px;
-    margin: 20px auto;
-}
-.infoblock {
-    display: flex;
-    flex-direction: column; /* Stack vertically */
-    justify-content: space-around;
-     /* Wider for larger screens */
-    margin: 0 auto; /* Center the block */
-    padding: 2%; /* Add padding */
-    flex-wrap: wrap; /* Allow wrapping */
-}
-.toppanel {
-    display: flex;
-    flex-direction: row; /* Arrange buttons in a row */
-    justify-content: space-around; /* Space buttons evenly */
-    margin-bottom: 0px; /* Add margin below buttons */
-    flex: 1; /* Allow top panel to take space */
-    max-width: 100%; /* Set a maximum width for the top panel */
-}
-.toppanelbutton {
-    cursor: pointer;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 1.5em;
-    color: lime;
-    background: rgb(130, 130, 130);
-    margin: 10px; /* Adjust margin to space buttons */
-    text-align: center;
-    flex: 1; /* Allow buttons to take equal space */
-    height: 50px; /* Set a fixed height for the buttons */
-    display: flex;
-    align-items: center; /* Center text vertically */
-    justify-content: center; /* Center text horizontally */
-}
-.infopanel {
-    background: rgb(130, 130, 130);
-    border-radius: 10px;
-    margin: 10px 0;
-    flex: 3; /* Infopanel takes more space */
-    width: 100%; /* Ensure infopanel takes full width */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    overflow: hidden; /* Prevent content from overflowing */
-}
-.icon {
-    width: 50px;  /* Set width for icons */
-    height: 50px; /* Set height for icons */
-}
-.iconblock{
-    margin-left: 2%;
-}
-.low-margin {
-            margin-bottom: 5px;
-}
-.projectblock {
-    position: relative;
-    width: 100%; /* Ensure projectblock takes full width of its container */
-    max-width: 100%; /* Prevent projectblock from exceeding the width of its container */
-    margin: 20px 0;
-    overflow: hidden; /* Ensure content doesn't overflow */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
-
-.project-cover {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.3s ease; /* Smooth transition for scaling */
-}
-
-.project-info {
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-transform: uppercase;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-.project-text {
-    color: white;
-    font-size: 75%;
-}
-
-.projectblock:hover .project-cover {
-    transform: scale(1.1); /* Scale up the cover image */
-}
-
-.projectblock:hover .project-info {
-    opacity: 1; /* Show on hover */
-}
-/* Стили для мобильных устройств */
-@media (max-width: 480px) {
-    .infoblock {
-        flex-direction: column; /* Stack vertically on mobile */
-    }
-    .toppanel {
-        order: -1; /* Move toppanel above infopanel */
-        flex-direction: row; /* Arrange buttons in a row */
-        flex-wrap: wrap; /* Allow wrapping */
-    }
-    h1 {
-        font-size: 2.5em;
-    }
-    h2 {
-        font-size: 2em;
-    }
-    h3 {
-        font-size: 1.5em;
-    }
-    p{
-        font-size: 1.2em;
-    }
-    ul, li, .infopanel {
-        font-size: 1.1em;
-    }
-    .infopanel{
-        padding: 3%;
-    }
-    .toppanelbutton {
-        font-size: 1.5em;
-        flex: 1 1 1 1; /* Buttons take equal space */
-        margin: 3.5px; /* Adjust margin for mobile */
-    }
-    .projectblock{
-        width: 100%;
-    }
-}
-
-/* Стили для планшетов и десктопов */
-@media (min-width: 481px) {
-    .infopanel {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .projectblock {
-        width: calc(50% - 20px); /* Two columns with some margin */
-        margin: 10px;
-    }
-}
-
-/* Стили для планшетов */
-@media (max-width:1200px) and (min-width: 480px) {
-    h1 {
-        font-size: 2.5em;
-    }
-    h2 {
-        font-size: 2em;
-    }
-    h3 {
-        font-size: 1.5em;
-    }
-    p{
-        font-size: 1.2em;
-    }
-    ul, li, .infopanel {
-        font-size: 1.1em;
-    }
-    .infopanel{
-        padding: 2%;
-    }
-    .toppanelbutton
-    {
-        font-size: 1.3em;
-    }
-}
-
-/* Стили для десктопов */
-@media (min-width: 1200px) {
-    h1 {
-        font-size: 3em;
-    }
-    h2 {
-        font-size: 2em;
-    }
-    h3 {
-        font-size: 1.5em;
-    }
-    p{
-        font-size: 1.3em;
-    }
-    ul, li, .infopanel {
-        font-size: 1.1em;
-    }
-    .infopanel{
-        padding: 1%;
-    }
-    .toppanelbutton{
-        font-size: 2em;
-    }
-}
-    </style>
 </head>
 <body>
     <header>
+        <div class="langbox">
+            <img src="images/rus.png" class="langbutton" alt="Rus Lang" onclick="changeLanguage('ru')">
+            <img src="images/eng.png" class="langbutton" alt="Eng Lang" onclick="changeLanguage('en')">
+        </div>
         <img src="images/temp_logo.png" class="logo" alt="Logo">
-        <h1>Распутин "NickRaspy" Никита</h1>
+        <h1 id="title">Распутин "NickRaspy" Никита</h1>
     </header>
     <div class="infoblock">
         <div class="toppanel">
@@ -288,20 +311,20 @@ img.logo {
         </div>
         <div class="infopanel" id = "mainInfo" style="display: block;">
             <h2>Обо мне</h2>
-            <p>&emsp;Меня зовут Никита, но ты также можешь называть меня Ник Распи или просто Ник. <br>
+            <p id ="aboutMe">&emsp;Меня зовут Никита, но ты также можешь называть меня Ник Распи или просто Ник. <br>
                 &emsp;Я специализируюсь в создании видеоигр преимущественно на движке Unity (но также постепенно изучаю и другие движки).  
                 С Unity я познакомился еще со школы, но посвятил себя ему в полной мере начиная с 2020.
                 Конкретно я занимаюсь геймдизайном и разработкой скриптов, изредка создаю модели и спрайты (в большинстве случаев тестовые, но небольшой опыт в рисовании и моделировании есть).
             </p>
             <h3>Мои достижения</h3>
-            <ul>
+            <ul id="achievements-list">
                 <li>Окончил бакалавриат по специальности "Математическое обеспечение и администрирование информационных систем" в 2024.</li>
                 <li>Поучаствовал в нескольких геймджемах, в одном из них занял призовое место.</li>
                 <li>Совместно с командой трех программистов (включая меня), одного аудио-дизайнера и множества художников смог успешно разработать фанатскую игру по одному комьюнити (на данный момент только демо)</li>
                 <li>Изучил и даже имплементировал в некоторые проекты такие фреймворки, как Zenject и DOTWeen, а также научился разрабатывать VR-проекты. </li>
                 <li>Основал команду разработки Unusuality Team, которая стремится к созданию необычных игр и ищет желающих помочь в реализации.</li>
             </ul>
-            <p class="low-margin">&emsp;С моими проектами можно ознакомится в следующих ресурсах:</a>
+            <p class="low-margin" id = "platformLinks">&emsp;С моими проектами можно ознакомится на этих площадках:</a>
             <div class="iconblock">
                 <a href = "https://unusuality-team.itch.io" class="icon"><img src ="images/itchio.svg" class="icon"></a>
                 <a href = "https://github.com/NickRaspy" class="icon"><img src ="images/github.png" class="icon"></a>
@@ -326,9 +349,17 @@ img.logo {
         </div>
         <div class="infopanel" id = "contacts" style="display: none;">
             <h2>Контакты</h2>
+            <p>&emsp;E-mail: <a href="mailto:nickraspyofficial@gmail.com">nickraspyofficial@gmail.com</a></p>
+            <div class="iconblock">
+                <a href = "https://t.me/nickraspy" class="icon"><img src ="images/telegram.svg" class="icon"></a>
+                <a href = "https://vk.com/nickraspy" class="icon"><img src ="images/vk.svg" class="icon"></a>
+                <a href = "https://discordapp.com/users/262561232819716097" class="icon"><img src ="images/discord.svg" class="icon"></a>
+            </div>
         </div>
     </div>
 </body>
+</html>
+
 <script>
     function showCurrentInfopanel(id){
         var blocks = document.getElementsByClassName("infopanel");
@@ -336,6 +367,85 @@ img.logo {
             if(element.id == id) element.style.display = "block";
             else element.style.display = "none";
         });
+    }        
+    const translations = {
+        ru: {
+            title: 'Распутин "NickRaspy" Никита',
+            aboutMe: 'Обo мне',
+            projects: 'Проекты',
+            contacts: 'Контакты',
+            aboutMeContent: `&emsp;Меня зовут Никита, но ты также можешь называть меня Ник Распи или просто Ник. <br>
+                &emsp;Я специализируюсь в создании видеоигр преимущественно на движке Unity (но также постепенно изучаю и другие движки).  
+                С Unity я познакомился еще со школы, но посвятил себя ему в полной мере начиная с 2020.
+                Конкретно я занимаюсь геймдизайном и разработкой скриптов, изредка создаю модели и спрайты (в большинстве случаев тестовые, но небольшой опыт в рисовании и моделировании есть).`,
+            achievements: 'Мои достижения',
+            achievementsList: [
+                'Окончил бакалавриат по специальности "Математическое обеспечение и администрирование информационных систем" в 2024.',
+                'Поучаствовал в нескольких геймджемах, в одном из них занял призовое место.',
+                'Совместно с командой трех программистов (включая меня), одного аудио-дизайнера и множества художников смог успешно разработать фанатскую игру по одному комьюнити (на данный момент только демо)',
+                'Изучил и даже имплементировал в некоторые проекты такие фреймворки, как Zenject и DOTWeen, а также научился разрабатывать VR-проекты.',
+                'Основал команду разработки Unusuality Team, которая стремится к созданию необычных игр и ищет желающих помочь в реализации.'
+            ],
+            platformLinks: "&emsp;С моими проектами можно ознакомится на этих площадках:",
+            projectsTitle: 'Проекты',
+            contactsTitle: 'Контакты',
+            email: 'E-mail: <a href="mailto:nickraspyofficial@gmail.com">nickraspyofficial@gmail.com</a>',
+            projectTitle: 'Название проекта',
+            projectDescription: 'Краткое описание проекта. Это может быть несколько строк текста, описывающих основные особенности и цели проекта.'
+        },
+        en: {
+            title: 'Raspy "NickRaspy" Nick',
+            aboutMe: 'About Me',
+            projects: 'Projects',
+            contacts: 'Contacts',
+            aboutMeContent: `&emsp;My name is Nick Raspy, but you can also call me just Nick. <br>
+                &emsp;I specialize in creating video games mainly on the Unity engine (but I am also gradually learning other engines).
+                I got acquainted with Unity back in school, but fully dedicated myself to it starting from 2020.
+                Specifically, I am engaged in game design and script development, occasionally creating models and sprites (mostly test ones, but I have some experience in drawing and modeling).`,
+            achievements: 'My Achievements',
+            achievementsList: [
+                'Graduated with a bachelor\'s degree in "Mathematical Software and Information Systems Administration" in 2024.',
+                'Participated in several game jams, winning a prize in one of them.',
+                'Successfully developed a fan game for a community with a team of three programmers (including myself), one audio designer, and many artists (currently only a demo).',
+                'Learned and even implemented frameworks such as Zenject and DOTWeen in some projects, and also learned to develop VR projects.',
+                'Founded the Unusuality Team development team, which aims to create unusual games and is looking for people willing to help with implementation.'
+            ],
+            platformLinks: `&emsp;You can check my projects on platforms below:`,
+            projectsTitle: 'Projects',
+            contactsTitle: 'Contacts',
+            email: 'E-mail: <a href="mailto:nickraspyofficial@gmail.com">nickraspyofficial@gmail.com</a>',
+            projectTitle: 'Project Title',
+            projectDescription: 'A brief description of the project. This can be a few lines of text describing the main features and goals of the project.'
+        }
+    };
+
+    function changeLanguage(language) {
+        document.getElementById('title').innerText = translations[language].title;
+        document.querySelector('.toppanelbutton[onclick="showCurrentInfopanel(\'mainInfo\')"]').innerText = translations[language].aboutMe;
+        document.querySelector('.toppanelbutton[onclick="showCurrentInfopanel(\'projects\')"]').innerText = translations[language].projects;
+        document.querySelector('.toppanelbutton[onclick="showCurrentInfopanel(\'contacts\')"]').innerText = translations[language].contacts;
+        document.querySelector('#mainInfo h2').innerText = translations[language].aboutMe;
+        document.querySelector('p#aboutMe').innerHTML = translations[language].aboutMeContent;
+        document.querySelector('#mainInfo h3').innerText = translations[language].achievements;
+        document.querySelector('p#platformLinks').innerHTML = translations[language].platformLinks;
+
+        const achievementsList = document.getElementById('achievements-list');
+        achievementsList.innerHTML = '';
+        translations[language].achievementsList.forEach(item => {
+            const li = document.createElement('li');
+            li.innerText = item;
+            achievementsList.appendChild(li);
+        });
+
+        document.querySelector('#projects h2').innerText = translations[language].projectsTitle;
+        document.querySelector('#contacts h2').innerText = translations[language].contactsTitle;
+        document.querySelector('#contacts p').innerHTML = translations[language].email;
+        document.querySelectorAll('.projectblock .project-info h3').forEach(el => el.innerText = translations[language].projectTitle);
+        document.querySelectorAll('.projectblock .project-info p').forEach(el => el.innerText = translations[language].projectDescription);
     }
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const userLang = navigator.language || navigator.userLanguage;
+        const lang = userLang.startsWith('ru') ? 'ru' : 'en';
+        changeLanguage(lang);
+    });
 </script>
-</html>

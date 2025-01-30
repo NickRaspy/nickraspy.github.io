@@ -120,49 +120,75 @@
     .low-margin {
                 margin-bottom: 5px;
     }
-    .projectblock {
-        position: relative;
-        width: 100%; /* Ensure projectblock takes full width of its container */
-        max-width: 100%; /* Prevent projectblock from exceeding the width of its container */
-        margin: 20px 0;
-        overflow: hidden; /* Ensure content doesn't overflow */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    }
-    
-    .project-cover {
-        width: 100%;
-        height: 100%;
-        transition: transform 0.3s ease; /* Smooth transition for scaling */
-    }
-    
-    .project-info {
-        position: absolute;
-        top: 0;
-        left: 0;
-        text-transform: uppercase;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        padding: 10px;
-        text-align: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    .project-text {
-        color: white;
-        font-size: 75%;
-    }
-    
-    .projectblock:hover .project-cover {
-        transform: scale(1.1); /* Scale up the cover image */
-    }
-    
-    .projectblock:hover .project-info {
-        opacity: 1; /* Show on hover */
-    }
+    .projectblock-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px 0;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.projectblock {
+    position: relative;
+    width: 300px; /* Fixed width */
+    max-width: 100%; /* For responsiveness */
+    margin: 10px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    /* Key change: Prevent shrinking */
+    flex: 0 0 300px; 
+    box-sizing: border-box;
+}
+
+.project-cover {
+    width: 100%;
+    height: 300px;
+    border-radius: 15px 15px 0 0;
+    object-fit: cover;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.project-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 20px;
+    color: white;
+    border-radius: 15px 15px 0 0;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.projectblock:hover .project-info {
+    opacity: 1;
+}
+
+.projectblock:hover .project-cover {
+    transform: scale(1.05);
+    filter: blur(2px);
+}
+
+.projectblock .project-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+    color: lime;
+}
+
+.projectblock .project-info p {
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.4;
+    color: white;
+}
     .langbox{
         position: absolute;
         top: 0;
@@ -210,9 +236,26 @@
             flex: 1 1 1 1; /* Buttons take equal space */
             margin: 3.5px; /* Adjust margin for mobile */
         }
-        .projectblock{
-            width: 100%;
-        }
+        .projectblock-container {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .projectblock {
+        width: 100% !important; /* Override fixed width on mobile */
+        flex: 0 0 auto; /* Allow flexible width on mobile */
+        margin: 10px 0 !important;
+        box-sizing: border-box;
+    }
+
+    .project-cover {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
         .langbox {
         flex-direction: column; /* На мобильных устройствах кнопки располагаются в столбик */
         }
@@ -225,8 +268,12 @@
             flex-wrap: wrap;
         }
         .projectblock {
-            width: calc(50% - 20px); /* Two columns with some margin */
-            margin: 10px;
+        /* Use minmax to prevent shrinking below 300px but allow growing */
+        flex: 1 1 300px; 
+    }
+    
+        .projectblock-container {
+            justify-content: flex-start;
         }
     }
     
@@ -332,18 +379,20 @@
         </div>
         <div class="infopanel" id="projects" style="display: none;">
             <h2>Проекты</h2>
-            <div class="projectblock">
-                <img src="images/projects/degrainc.png" alt="Project Cover" class="project-cover">
-                <div class="project-info">
-                    <h3>Название проекта</h3>
-                    <p class="project-text">Краткое описание проекта. Это может быть несколько строк текста, описывающих основные особенности и цели проекта.</p>
+            <div class="projectblock-container">
+                <div class="projectblock">
+                    <img src="images/projects/degrainc.png" alt="Project Cover" class="project-cover">
+                    <div class="project-info">
+                        <h3>Название проекта</h3>
+                        <p>Краткое описание проекта. Это может быть несколько строк текста, описывающих основные особенности и цели проекта.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="projectblock">
-                <img src="images/projects/degrainc.png" alt="Project Cover" class="project-cover">
-                <div class="project-info">
-                    <h3>Название проекта</h3>
-                    <p class="project-text">Краткое описание проекта. Это может быть несколько строк текста, описывающих основные особенности и цели проекта.</p>
+                <div class="projectblock">
+                    <img src="images/projects/degrainc.png" alt="Project Cover" class="project-cover">
+                    <div class="project-info">
+                        <h3>Название проекта</h3>
+                        <p>Краткое описание проекта. Это может быть несколько строк текста, описывающих основные особенности и цели проекта.</p>
+                    </div>
                 </div>
             </div>
         </div>
